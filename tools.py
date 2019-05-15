@@ -169,4 +169,44 @@ def corre_simplex(A,b,c,ine,prob):
         bas[index[0]-1]=var[index[1]-1]
         vertableu(A,bas,var)
 
+#mas herramientas
+def res_ecuaciones(AA,bb):
+    A=copy.deepcopy(AA)
+    b=copy.deepcopy(bb)
+    A=appendcol(A,b)
+    n=len(A)
+    bas=[]
+    sol=[]
+    for i in range(n):
+        bas.append(i+1)
+    A=pivotabase(A,bas)
+    for i in range(n):
+        sol.append(A[i][n])
+        print('x',i+1,'=',A[i][n],sep='')
+    return sol
+
+def inv_matriz(AA):
+    A=copy.deepcopy(AA)
+    n=len(A)
+    I=identidad(n)
+    sol=mzero(n)
+
+    for i in range(n):
+     A=appendcol(A,I[i])
+ 
+    bas=[]
+    for i in range(n): #basicas para pivotar
+        bas.append(i+1)
     
+    A=pivotabase(A,bas)
+    sol = [[A[i][n+j] for j in range(n)] for i in range(n)]  
+    print('inv=')
+    ver(sol)
+    return sol
+
+def identidad(n):
+	MI = [[1 if j == i else 0 for j in range(n)] for i in range(n)]
+	return MI
+def mzero(n):
+    MI = [[0 for j in range(n)] for i in range(n)]
+    return MI
