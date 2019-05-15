@@ -1,1 +1,1 @@
-# Simplex-method-by-BigM-
+# Simplex-method-by-BigM
