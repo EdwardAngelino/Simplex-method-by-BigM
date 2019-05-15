@@ -17,3 +17,5 @@ ine=[1,0,-1] # 1:'<=', -1:'>=', 0:'='
 prob='max'
 
 corre_simplex(A,b,c,ine,prob)
+res_ecuaciones(A,b)
+inv_matriz(A)
