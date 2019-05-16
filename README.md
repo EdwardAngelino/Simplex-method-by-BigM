@@ -18,7 +18,7 @@ V0.0
 ----
 Optimizacion mediante el metodo SIMPLEX, version general utilizando BigM
 
-Ejemplo:
+#Ejemplo:
 
 min -3x1+x2+x3
 s.a.
