@@ -18,7 +18,7 @@ V0.0
 ----
 Optimizacion mediante el metodo SIMPLEX, version general utilizando BigM
 
-#Ejemplo:
+Ejemplo:
 
 min -3x1+x2+x3
 s.a.
@@ -28,11 +28,6 @@ s.a.
             x1,x2,x3 >=  0
 
 Para correr
-A = [[1,-2,1],
-     [-4,1,2],
-     [-2,0,1]]
-c=[-3,1,1]
-b=[11,3,1]
-ine=[1,-1,0]
-prob ='min'
-corre_simplex(A,b,c,ine,prob)'''
+corre_simplex([[1,-2,1],[-4,1,2],[-2,0,1]],[-3,1,1],[11,3,1],[1,-1,0],'min')
+
+corre_simplex(A,b,c,ine,prob)
