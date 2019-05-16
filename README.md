@@ -32,10 +32,14 @@ Ejemplo:
             
 
      Para correr:  corre_simplex(A,b,c,inecuaciones,problema)
-     nota en inecuaciones :
-     .  1 : '<='
-     . -1 : '>='
-     .  0 : '='
+     valores para inecuaciones :
+       1 : '<='
+      -1 : '>='
+       0 : '='
+     
+     valores para problema :
+       'max'
+       'min'
 
      \>corre_simplex([[1,-2,1],[-4,1,2],[-2,0,1]],[-3,1,1],[11,3,1],[1,-1,0],'min')
      
