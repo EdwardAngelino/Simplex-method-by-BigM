@@ -23,6 +23,7 @@ Ejemplo:
 min -3x1+x2+x3
 
 s.a.
+
       x1 - 2x2 +  x3 <= 11
       
     -4x1 +  x2 + 2x3 >=  3
