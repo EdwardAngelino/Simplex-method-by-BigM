@@ -31,8 +31,13 @@ Ejemplo:
             x1,x2,x3 >=  0
             
 
-  Para correr
+     Para correr:  corre_simplex(A,b,c,inecuaciones,problema)
+     nota en inecuaciones :
+     .  1 : '<='
+     . -1 : '>='
+     .  0 : '='
 
      \>corre_simplex([[1,-2,1],[-4,1,2],[-2,0,1]],[-3,1,1],[11,3,1],[1,-1,0],'min')
-     \>corre_simplex(A,b,c,ine,prob)
+     
+     
   
