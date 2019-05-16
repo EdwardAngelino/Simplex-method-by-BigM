@@ -1,11 +1,11 @@
 # Simplex-method-by-BigM-
-##V2.0
+V2.0
 ----
 Esta version culmina la solucion incluyendo resultados y precio sombra de cada una de las restricciones
 
 resultados(A,bas,n,pos,pr)  : se ingresa tableu(A), listado de variables basicas(bas), numero de variables(n), posicion inicial de bases(pos), tipo de problema('min' o 'max')
 
-##V1.0
+V1.0
 ----
 Esta version añade rutinas de inversion de matrices y resolucion de ecuaciones.
 
@@ -14,7 +14,7 @@ inv_matriz(A) : entrega como resultado matriz invertida
 res_ecuaciones(A,b) : entrega como resulado un vector de solucion de ecuaciones
 
 
-##V0.0
+V0.0
 ----
 Optimizacion mediante el metodo SIMPLEX, version general utilizando BigM
 
