@@ -28,11 +28,11 @@ s.a.
             x1,x2,x3 >=  0
 
 Para correr
->>>A = [[1,-2,1],
+'''>>>A = [[1,-2,1],
        [-4,1,2],
        [-2,0,1]]
 >>>c=[-3,1,1]
 >>>b=[11,3,1]
 >>>ine=[1,-1,0]
 >>>prob ='min'
->>>corre_simplex(A,b,c,ine,prob)
+>>>corre_simplex(A,b,c,ine,prob)'''
