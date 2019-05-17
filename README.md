@@ -1,4 +1,10 @@
 # Simplex-method-by-BigM-
+V3.0
+----
+Esta version agrega la evaluacion del resultado, para problemas infactibles (var slacks < Big M) o no acotadas (variables slack > 0)
+     verificaerror(A,M,var) : funcion devuelve 1 o 0 si encuentra infactibilidad o no acotado.
+Se incluyeron problemas tipos en archivo corre.py
+
 V2.0
 ----
 Esta version culmina la solucion incluyendo resultados y precio sombra de cada una de las restricciones
