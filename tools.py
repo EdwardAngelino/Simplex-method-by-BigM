@@ -7,7 +7,8 @@ def corre_simplex(A,b,c,ine,prob): #Corre simplex llama a todas rutinas
     print('ineq=',ine)
     print('b=',b)
     print('Tableu inicial')
-    (A,var,bas,pos)=tableu(A,b,c, ine, prob)
+    M=100
+    (A,var,bas,pos)=tableu(A,b,c, ine, prob,M) # M al final
     vertableu(A,bas,var)
     print('Tableu')
     A=pivotabase(A,pos)
@@ -23,10 +24,25 @@ def corre_simplex(A,b,c,ine,prob): #Corre simplex llama a todas rutinas
         A=pivot(A,index)
         bas[index[0]-1]=var[index[1]-1]
         vertableu(A,bas,var)
-    print('Solucion :')
-    resultados(A,bas,len(c),pos,prob)
+    if verificaerror(A,M,var) == 0:
+        print('Solucion :')
+        resultados(A,bas,len(c),pos,prob)
+    
+def verificaerror(A,M,var):
+    n=len(A[0])-1
+    m=len(A)-1
+    funb=0
+    finf=0
+    for j in range(n):  #se revisa solo entre las slack
+       if var[j][0:1] == 's' and A[m][j]  > 0 :
+           funb =1
+       elif var[j][0:1] == 's' and A[m][j]  <= -M :
+           finf=1
+    if funb : print('Error : El problema no esta acotado')
+    if finf : print('Error : El problema es infactible')
+    return funb + finf
 
-def tableu(AA,bb,cc, inq, pr):  #construye el tableu de los datos.
+def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
     A=copy.deepcopy(AA)
     b=copy.deepcopy(bb)
     c=copy.deepcopy(cc)
@@ -44,7 +60,6 @@ def tableu(AA,bb,cc, inq, pr):  #construye el tableu de los datos.
     for j in range(n):  #c tiene la cantidad de variables
         variables.append(f"x{j+1}")
     c = [x*-1 for x in c]  #para minimizacion
-    M = 100
     if prob == 'max' :
         c = copy.deepcopy(cc)
     A.append(c)   #añade al final
@@ -223,7 +238,7 @@ def inv_matriz(AA): #invierte matriz
     ver(sol)
     return sol
 
-def resultados(A,bas,n,pos,pr):  #muestra resultados en modo humano
+def resultados(A,bas,n,pos,pr): # muestra resultados finales
     variables =[]
     valor=[]
     m=len(bas)  #nro de restriccion o variables basicas
