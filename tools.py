@@ -18,7 +18,7 @@ def corre_simplex(A,b,c,ine,prob): #Corre simplex llama a todas rutinas
     print('indice basicas',pos)
     print('----SIMPLEX----')
     for k in range(0,10):
-      index=indexpivote(A)
+      index=indexpivote(A,bas,var)
       if index[0] > -1 and index[1] > -1:
         print('paso',k+1,': pivote encontrado=',index, sep='')
         A=pivot(A,index)
@@ -71,7 +71,7 @@ def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
     #construccion de tableu
     for i in range(0,len(ineqq)):
       A=appendcol(A,zero)
-      if ineqq[i] == -1:
+      if ineqq[i] == 1:
           A[i][n+nslack+naux]=-1
           variables.append(f"s{nslack+1}")
           nslack +=1
@@ -88,7 +88,7 @@ def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
           base.append(f"a{naux+1}")
           A[m][n+nslack+naux]=-M
           naux +=1          
-      elif ineqq[i] == 1:
+      elif ineqq[i] == -1:
           variables.append(f"s{nslack+1}")
           base.append(f"s{nslack+1}")
           A[i][n+nslack+naux]=1
@@ -120,35 +120,45 @@ def pivotabase(T,V): #hace pivotes consecutivos basados en vector col
       A=pivot(A,[k+1,pos[k]])
     return A
 
-def pivotec(vv): #evaluacion de columnas simplex devuelve indexj
+def pivotec(vv,vari): #evaluacion de columnas simplex devuelve indexj
     v=copy.deepcopy(vv)
     vmax=-1
     jmax=-2
+    temp=vmax
     for j in range(0,len(v)-1):
-      if v[j] > 0 and v[j] > vmax:
+      temp=v[j]
+      if vari[j][0:1] != 'x':
+         temp  = temp - 0.00009
+      if temp > 0 and temp > vmax:
       	vmax = v[j]
       	jmax = j
     return jmax
 
-def pivotef(vv,bb): #evaluacion de filas simplex devuelve indexi
+def pivotef(vv,bb,basi): #evaluacion de filas simplex devuelve indexi
 	  v=copy.deepcopy(vv)
 	  b=copy.deepcopy(bb)
 	  vmin = 999999999.99
 	  imin = -2
+	  temp = vmin	    
 	  for i in range(0,len(bb)-1):
-	  	if v[i] != 0 and b[i]/v[i] > 0 and b[i]/v[i] < vmin:
-	  		vmin = b[i]/v[i]
-	  		imin = i
+	    if v[i] != 0 : 
+	       temp = b[i]/v[i]
+	    if basi[i][0:1] == 's':
+	       temp = temp - 0.009
+	       #print(basi[i][0:1], temp)
+	    if v[i] != 0 and temp > 0 and temp < vmin:
+	  	    vmin = temp
+	  	    imin = i
 	  return imin
 
-def indexpivote(AA): #llama al calculo de index
+def indexpivote(AA,basi,vari): #llama al calculo de index
     A=copy.deepcopy(AA)
     
-    indexj=pivotec(A[len(A)-1])+1
+    indexj=pivotec(A[len(A)-1],vari)+1
     
     bb=vcol(A,len(A[0]))
     vv=vcol(A,indexj)
-    indexi=pivotef(vv,bb)+1
+    indexi=pivotef(vv,bb,basi)+1
     return [indexi,indexj]
 
 #herramientas auxiliares
@@ -255,3 +265,4 @@ def resultados(A,bas,n,pos,pr): # muestra resultados finales
     print('Duales:')
     for j in range(len(pos)):
       print(f'w{j+1}',redondea(A[m][pos[j]-1])*(-1 if pr=='max' else 1))
+
