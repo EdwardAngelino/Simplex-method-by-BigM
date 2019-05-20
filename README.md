@@ -1,4 +1,8 @@
 # Simplex-method-by-BigM-
+V4.0
+----
+Esta version añadio en la evaluacion de las filas del pivote, la preferencia de quitar las variables slack de las base antes que otras. esto sucede cuando los valores son iguales y se tiene que definir que variable sacar de la base.
+
 V3.0
 ----
 Esta version agrega la evaluacion del resultado, para problemas infactibles (var slacks < Big M) o no acotadas (variables slack > 0)
