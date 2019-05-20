@@ -1,7 +1,7 @@
 # Simplex-method-by-BigM-
 V4.0
 ----
-Esta version añadio en la evaluacion de las filas del pivote, la preferencia de quitar las variables slack de las base antes que otras. esto sucede cuando los valores son iguales y se tiene que definir que variable sacar de la base.
+Esta version añadio en la evaluacion de las filas del pivote, la preferencia de quitar las variables slack de las base antes que otras. esto sucede cuando los valores son iguales y se tiene que definir que variable sacar de la base. se cambio la definicion de ineq, -1 = "<=" y 1 =">=", mas natural.
 
 V3.0
 ----
@@ -45,8 +45,8 @@ Ejemplo:
 
      Para correr:  corre_simplex(A,b,c,inecuaciones,problema)
      valores para inecuaciones :
-       1 : '<='
-      -1 : '>='
+      -1 : '<='
+       1 : '>='
        0 : '='
      
      valores para problema :
