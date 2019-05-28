@@ -63,5 +63,5 @@ c = [-1,2,-3]
 A = [ [1,1,1],[-1,1,2],[ 0, 2, 3],[0,0,1] ]
 b = [ 6,4,10,2 ]
 inq = [ 0,0,0,-1]
-corre_simplex(A,b,c,inq,'min',
+corre_simplex(A,b,c,inq,'min',f)
 
