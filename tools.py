@@ -76,18 +76,18 @@ def verproblema(AA,bb,cc,ine,prob):
 				else:
 					print(f'{t}x{j+1}',end='')
 		if ine[i] == 1:
-			print(' >= ',b[i],end='')
+			print(' \u2265',b[i],end='')
 		elif ine[i] == -1:
-			print(' <= ',b[i],end='')
+			print(' \u2264',b[i],end='')
 		elif ine[i] == 0:
-			print(' = ',b[i],end='')
+			print(' =',b[i],end='')
 	#variables >= 0
 	print('\n\n  ',end='')
 	for i in range(n):
 		print(f'x{i+1}',end='')
 		if i < n-1 :
 			print(',',end='')
-	print(' >= 0\n')
+	print(' \u2265 0\n')
 				
 def verificaerror(A,M,var):
     n=len(A[0])-1
