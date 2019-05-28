@@ -326,3 +326,4 @@ def resultados(A,bas,n,pos,pr): # muestra resultados finales
     print('Duales:')
     for j in range(len(pos)):
       print(f'w{j+1}',redondea(A[m][pos[j]-1])*(-1 if pr=='max' else 1))
+

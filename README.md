@@ -30,7 +30,11 @@ Esta version añade rutinas de inversion de matrices y resolucion de ecuaciones.
 
     res_ecuaciones(A,b) : entrega como resulado un vector de solucion de ecuaciones
 
+<<<<<<< HEAD
 >>>>>>> 351e883aae41a15b0dc0f4c909e2fc3f4b8884aa
+=======
+>>>>>>> 2c9142b2037228b817bbe6cc6211ad149154b82f
+>>>>>>> version3
 
 V0.0
 ----
@@ -68,5 +72,9 @@ Ejemplo:
      \>corre_simplex([[1,-2,1],[-4,1,2],[-2,0,1]],[-3,1,1],[11,3,1],[1,-1,0],'min')
      
      
+<<<<<<< HEAD
 >>>>>>> 351e883aae41a15b0dc0f4c909e2fc3f4b8884aa
+=======
+>>>>>>> 2c9142b2037228b817bbe6cc6211ad149154b82f
+>>>>>>> version3
   
