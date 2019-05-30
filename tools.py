@@ -1,4 +1,10 @@
 import math, copy
+
+#para mostrar los caracteres unicode
+import io,sys
+sys.stdout = io.open(sys.stdout.fileno(), 'w', encoding='utf8')
+#print(sys.stdout.encoding)
+
 def corre_simplex(A,b,c,ine,prob,fr): #Corre simplex llama a todas rutinas
     verproblema(A,b,c,ine,prob)
     M=100
@@ -51,10 +57,10 @@ def verproblema(AA,bb,cc,ine,prob):
 			print(f'x{i+1}',end='')
 		else:
 			print(f'{t}x{i+1}',end='')
-	
+
 	#restricciones
 	print('\n','s.a.:',sep='',end='')
-	
+
 	for i in range(m):
 		print('\n  ',end='')
 		for j in range(n):
@@ -88,7 +94,7 @@ def verproblema(AA,bb,cc,ine,prob):
 		if i < n-1 :
 			print(',',end='')
 	print(' \u2265 0\n')
-				
+
 def verificaerror(A,M,var):
     n=len(A[0])-1
     m=len(A)-1
@@ -109,7 +115,7 @@ def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
     c=copy.deepcopy(cc)
     ineqq=copy.deepcopy(inq)
     prob=copy.deepcopy(pr)
-    
+
     #las listas de variables
     variables=[]
     base=[]
@@ -125,7 +131,7 @@ def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
         c = copy.deepcopy(cc)
     A.append(c)   #añade al final
     b.append(0)
-    zero=[0.0]*len(b) 
+    zero=[0.0]*len(b)
     naux=0
     nslack=0
 
@@ -142,13 +148,13 @@ def tableu(AA,bb,cc, inq, pr, M):  #construye el tableu de los datos.
           variables.append(f"a{naux+1}")
           base.append(f"a{naux+1}")
           A[m][n+nslack+naux]=-M
-          naux +=1          
+          naux +=1
       elif ineqq[i] == 0:
           A[i][n+nslack+naux]=1
           variables.append(f"a{naux+1}")
           base.append(f"a{naux+1}")
           A[m][n+nslack+naux]=-M
-          naux +=1          
+          naux +=1
       elif ineqq[i] == -1:
           variables.append(f"s{nslack+1}")
           base.append(f"s{nslack+1}")
@@ -200,9 +206,9 @@ def pivotef(vv,bb,basi): #evaluacion de filas simplex devuelve indexi
 	  b=copy.deepcopy(bb)
 	  vmin = 999999999.99
 	  imin = -2
-	  temp = vmin	    
+	  temp = vmin
 	  for i in range(0,len(bb)-1):
-	    if v[i] != 0 : 
+	    if v[i] != 0 :
 	       temp = b[i]/v[i]
 	    if basi[i][0:1] == 's':
 	       temp = temp - 0.009
@@ -214,9 +220,9 @@ def pivotef(vv,bb,basi): #evaluacion de filas simplex devuelve indexi
 
 def indexpivote(AA,basi,vari): #llama al calculo de index
     A=copy.deepcopy(AA)
-    
+
     indexj=pivotec(A[len(A)-1],vari)+1
-    
+
     bb=vcol(A,len(A[0]))
     vv=vcol(A,indexj)
     indexi=pivotef(vv,bb,basi)+1
@@ -245,7 +251,7 @@ def ver(A): #muestra la matriz A en otro formato
 		   val = redondea(j)
 		   print('{0:7.1f}'.format(val),end='')
 		print()
-		 
+
 def vertableu(AA,vbase,vvar): #Muestra tableu
     A = copy.deepcopy(AA)
     var=copy.deepcopy(vvar)
@@ -260,7 +266,7 @@ def vertableu(AA,vbase,vvar): #Muestra tableu
       for j in range(0,len(A[k])):
         val = redondea(A[k][j])
         print('{0:7.1f}'.format(val),end='')
-      print()     
+      print()
 
 def redondea(x): #redondea para print a n decimales
 	x = math.ceil(x*10000)/10000
@@ -298,13 +304,13 @@ def inv_matriz(AA): #invierte matriz
 
     for i in range(n):
      A=appendcol(A,I[i])
- 
+
     bas=[]
     for i in range(n): #basicas para pivotar
         bas.append(i+1)
-    
+
     A=pivotabase(A,bas)
-    sol = [[A[i][n+j] for j in range(n)] for i in range(n)]  
+    sol = [[A[i][n+j] for j in range(n)] for i in range(n)]
     print('inv=')
     ver(sol)
     return sol
@@ -315,15 +321,14 @@ def resultados(A,bas,n,pos,pr): # muestra resultados finales
     m=len(bas)  #nro de restriccion o variables basicas
     mA=len(A[0])-1 #columna de RHS
     for k in range(n): #para todas las x
-     variables.append(f"x{k+1}") 
+     variables.append(f"x{k+1}")
      valor.append(0)
      for i in range(m): #para todas las variables basicas
        if variables[k] == bas[i]:
            valor[k] = A[i][mA]
      print(variables[k],valor[k])
-    print('z',redondea(A[m][mA])*(-1 if pr=='max' else 1)) 
-    
+    print('z',redondea(A[m][mA])*(-1 if pr=='max' else 1))
+
     print('Duales:')
     for j in range(len(pos)):
       print(f'w{j+1}',redondea(A[m][pos[j]-1])*(-1 if pr=='max' else 1))
-
