@@ -16,6 +16,7 @@ Ejemplo:
        Ver ejemplo.png
 
 cuenta con las siguientes funciones y variables
+
      corre(A,b,c,inq,tp)      :  Corre el metodo simplex BigM hasta conseguir resultado
      ctableu(A,b,c,inq,tp)    :  Construye el tableu
      esctab(a,pos,va)         :  escribe tableu 
